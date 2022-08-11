@@ -12,10 +12,10 @@
       <br>
       <div>
         <table class="table ">
-             <th >
-                  <td>Numero</td>
-                  <td>Todo item</td>
-                  <td>Action</td>
+             <th>
+                <td>Numero</td>
+                <td>Todo list</td>
+                <td>Action</td>
              </th>
              <tr>
                 <td></td>
@@ -40,6 +40,9 @@ export default {
 .input-group{
   padding-left: 200px;
   padding-right: 200px;
+}
+table{
+  text-align:center;
 }
 
 </style>
