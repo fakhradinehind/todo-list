@@ -4,11 +4,11 @@
       <br>
           <div class="input-group">
                 <input type="text" class="form-control" placeholder="ajouter votre ..." v-model="todo" >
-                <button class="btn btn-outline-secondary" type="button" @click="ajouter" >Ajouter</button>
-                <button class="btn btn-outline-secondary" type="button" @click="annuler">Annuler</button>
+                <button class="btn btn-outline-secondary b1" type="button" @click="ajouter" >Ajouter</button>
+                <button class="btn btn-outline-secondary b1" type="button" @click="annuler">Annuler</button>
           </div>
           <br>
-      <button class="btn btn-primary" @click="afficher">Afficher</button>
+      <button class="btn btn-primary " @click="afficher">Afficher</button>
       <br>
       <br>
      <table class="table">
@@ -16,6 +16,7 @@
     <tr> 
       <th scope="col">Numero</th>
       <th scope="col">Todo</th>
+      <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -24,7 +25,10 @@
       
       <td>{{post.id}}</td>
       <td>{{post.todo}}</td>
-      <td><button @click="supprimer(post.id)">supprimer</button><button>Modifier</button></td>
+      <td>{{post.status}}</td>
+      <td><button @click="supprimer(post.id)" class="btn btn-danger btn-sm">delete</button>&nbsp
+      <button  class="btn btn-info btn-sm" @click.once="finished(post.id)">Finished</button>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -40,7 +44,8 @@ export default {
     return{
       posts:null,
       i:0,
-      todo:''
+      todo:'',
+      sup:true
     }
         
   },
@@ -62,15 +67,22 @@ export default {
       })
     }*/
     async ajouter(){
-      this.i=this.i+1
-       let result = await axios.post("http://localhost:3000/posts",{
-                    numero:this.i,
-                    todo:this.todo
-                })
-                console.warn(result)
-                if(result.status==201){
-                        alert("sign up")
-                }
+      if(this.todo==''){
+        alert("remplir le champ")
+      }
+      else{
+        this.i=this.i+1
+         let result = await axios.post("http://localhost:3000/posts",{
+                      numero:this.i,
+                      todo:this.todo,
+                      status:'in progress'
+                  })
+                  console.warn(result)
+                  if(result.status==201){
+                          alert("vous voulez vraiment ajouter ")
+                  }
+        this.afficher()
+      }
     },
     annuler(){
       this.todo=''
@@ -80,8 +92,19 @@ export default {
       .then(response=>{
         console.log(response)
       })
+       this.afficher()
 
+    },
+    async finished(id){
+      let result=await axios.put(`http://localhost:3000/posts/${id}`,{
+        todo:this.todo,
+        status:'completed'
+      }).then(response=>{
+        console.log(response)
+      })
+      this.afficher()
     }
+ 
  }
   
 }
@@ -92,6 +115,13 @@ export default {
 .input-group{
   padding-left: 200px;
   padding-right: 200px;
+}
+.table{
+  color:#fff;
+}
+.b1{
+  background-color: #256D85;
+  color:#fff;
 }
 
 

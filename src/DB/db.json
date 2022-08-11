@@ -2,18 +2,27 @@
   "posts": [
     {
       "numero": 1,
-      "todo": "ikram",
-      "id": 7
+      "todo": "hind",
+      "status": "in progress",
+      "id": 1
     },
     {
       "numero": 1,
       "todo": "ikram",
-      "id": 8
+      "status": "in progress",
+      "id": 2
     },
     {
       "numero": 1,
-      "todo": "hind fakhradine",
-      "id": 9
+      "todo": "achraf",
+      "status": "in progress",
+      "id": 3
+    },
+    {
+      "numero": 1,
+      "todo": "hind",
+      "status": "in progress",
+      "id": 4
     }
   ]
 }
