@@ -5,7 +5,7 @@
           <div class="input-group">
                 <input type="text" class="form-control" placeholder="ajouter votre ..." v-model="todo" >
                 <button class="btn btn-outline-secondary" type="button" @click="ajouter" >Ajouter</button>
-                <button class="btn btn-outline-secondary" type="button">Annuler</button>
+                <button class="btn btn-outline-secondary" type="button" @click="annuler">Annuler</button>
           </div>
           <br>
       <button class="btn btn-primary" @click="afficher">Afficher</button>
@@ -13,8 +13,7 @@
       <br>
      <table class="table">
   <thead>
-    <tr>
-      
+    <tr> 
       <th scope="col">Numero</th>
       <th scope="col">Todo</th>
       <th scope="col">Action</th>
@@ -23,9 +22,9 @@
   <tbody>
     <tr v-for="post in posts">
       
-      <td>{{post.numero}}</td>
+      <td>{{post.id}}</td>
       <td>{{post.todo}}</td>
-      <td><button>supprimer</button><button>Modifier</button></td>
+      <td><button @click="supprimer(post.id)">supprimer</button><button>Modifier</button></td>
     </tr>
   </tbody>
 </table>
@@ -72,6 +71,16 @@ export default {
                 if(result.status==201){
                         alert("sign up")
                 }
+    },
+    annuler(){
+      this.todo=''
+    },
+    async supprimer(id){
+      let result=await axios.delete(`http://localhost:3000/posts/${id}`)
+      .then(response=>{
+        console.log(response)
+      })
+
     }
  }
   
