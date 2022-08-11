@@ -3,7 +3,7 @@
       <h1>Project Todo-List</h1>
       <br>
           <div class="input-group">
-                <input type="text" class="form-control" placeholder="ajouter votre ..." >
+                <input type="text" class="form-control" placeholder="ajouter votre ..." v-model="todo" >
                 <button class="btn btn-outline-secondary" type="button" @click="ajouter" >Ajouter</button>
                 <button class="btn btn-outline-secondary" type="button">Annuler</button>
           </div>
@@ -40,24 +40,38 @@ export default {
   data(){
     return{
       posts:null,
-      i:0
+      i:0,
+      todo:''
     }
         
   },
  methods:{
-  //async ajouter(){
-           // Création d'une promesse qui va contenir l'appel
-    //       const response = await axios.get('http://localhost:3000/posts')
-            // Avec la méthode "then", on extrait les données
-      //    this.todo=response.data
-        //  console.log(response.data)
-  //}
   async afficher(){
    await axios.get("http://localhost:3000/posts")
             .then(result => {
               this.posts = result.data;
               })
               console.table(this.posts)
+    },
+ /*   async ajouter(){
+      this.i=this.i+1
+      let result=await axios.post("http://localhost:3000/posts",{
+        numero:this.i,
+        todo:this.todo
+      }).then(res=>{
+        console.log(result.status)
+      })
+    }*/
+    async ajouter(){
+      this.i=this.i+1
+       let result = await axios.post("http://localhost:3000/posts",{
+                    numero:this.i,
+                    todo:this.todo
+                })
+                console.warn(result)
+                if(result.status==201){
+                        alert("sign up")
+                }
     }
  }
   
