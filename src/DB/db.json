@@ -1,9 +1,8 @@
 {
   "posts": [
     {
-      "numero": 1,
-      "todo": "hind",
-      "status": "in progress",
+      "todo": "ismail",
+      "status": "completed",
       "id": 1
     },
     {
@@ -13,9 +12,8 @@
       "id": 2
     },
     {
-      "numero": 1,
-      "todo": "achraf",
-      "status": "in progress",
+      "todo": "hind",
+      "status": "completed",
       "id": 3
     },
     {
@@ -23,6 +21,12 @@
       "todo": "hind",
       "status": "in progress",
       "id": 4
+    },
+    {
+      "numero": 1,
+      "todo": "ismail",
+      "status": "in progress",
+      "id": 5
     }
   ]
 }

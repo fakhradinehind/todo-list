@@ -8,7 +8,7 @@
                 <button class="btn btn-outline-secondary b1" type="button" @click="annuler">Annuler</button>
           </div>
           <br>
-      <button class="btn btn-primary " @click="afficher">Afficher</button>
+      <button class="btn  b2 " @click="afficher">Afficher</button>
       <br>
       <br>
      <table class="table">
@@ -122,6 +122,13 @@ export default {
 .b1{
   background-color: #256D85;
   color:#fff;
+}
+.b2{
+  background-color: #256D85;
+  color: #fff;
+}
+.b2:focus{
+  background-color: aqua;
 }
 
 
