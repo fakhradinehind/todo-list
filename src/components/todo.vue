@@ -128,7 +128,7 @@ export default {
   color: #fff;
 }
 .b2:focus{
-  background-color: aqua;
+  background-color:#8FE3CF;
 }
 
 
